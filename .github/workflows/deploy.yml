@@ -1,0 +1,23 @@
+name: Deployment
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generate:
+    env:
+      API_KEY: ${{ secrets.API_KEY }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: gh-pages
+          folder: sounds
